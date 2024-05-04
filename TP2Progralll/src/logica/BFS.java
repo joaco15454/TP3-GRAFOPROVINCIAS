@@ -43,7 +43,7 @@ public class BFS {
 				L.add(vecino);
 	}
 	
-	private static void inicializarRecorrido(Grafo g, int origen) 
+	static void inicializarRecorrido(Grafo g, int origen) 
 	{
 		L = new LinkedList<Integer>();
 		marcados = new boolean[g.tamano()];
