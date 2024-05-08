@@ -94,4 +94,10 @@ public class Grafo {
             throw new IllegalArgumentException("No se permiten loops: (" + i + ", " + j + ")");
         }
     }
+    void cargarMismos() {
+		for(int i=0;i<A.length;i++) {
+			A[i][i]=false;
+		}
+	}
+
 }

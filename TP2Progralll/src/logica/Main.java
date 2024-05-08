@@ -1,32 +1,34 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
+	private static List<Integer> listaDeProvincias = new ArrayList<>();
+	private static Grafo Grafo_G;
+	private static Grafo Arbol;
+	public Main() {
+	    listaDeProvincias = new ArrayList<>();
+	    Grafo_G = null;
+	    Arbol = null;
+	}
+	
+	public static void CargarNodo(int p) {
+			listaDeProvincias.add(p);
+	}
+	
+	public static void crearGrafo() {
+		Grafo_G = new Grafo(listaDeProvincias.size());
+	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// Creamos un grafo con 5 vértices
-        Grafo grafo = new Grafo(5);
+	private static void agregarConexiones(int provincia1, int provincia2, int peso) {
+		Grafo_G.agregarAristaConPeso(provincia1, provincia2, peso);
+	}
 
-        // Agregamos algunas aristas con pesos
-        grafo.agregarAristaConPeso(0, 1, 4);
-        grafo.agregarAristaConPeso(0, 2, 8);
-        grafo.agregarAristaConPeso(1, 2, 11);
-        grafo.agregarAristaConPeso(1, 3, 8);
-        grafo.agregarAristaConPeso(2, 4, 7);
-        grafo.agregarAristaConPeso(3, 4, 2);
+	private static void crearArbol() {
+		Arbol=new Grafo(Grafo_G.tamano());
+		Arbol.cargarMismos(); //hay que seguir
+	}
 
-        // Mostramos los pesos de las aristas agregadas
-        System.out.println("Pesos de las aristas:");
-        for (int i = 0; i < grafo.tamano(); i++) {
-            for (int j : grafo.vecinos(i)) {
-                System.out.println("Peso de la arista (" + i + ", " + j + "): " + grafo.obtenerPeso(i, j));
-            }
-        }
-
-        // Recorremos el grafo utilizando BFS
-        System.out.println("\nRecorrido BFS:");
-        System.out.println(BFS.esConexo(grafo));;
-    }
 }
-
 
