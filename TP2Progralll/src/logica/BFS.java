@@ -11,8 +11,6 @@ public class BFS {
 	private static List<Integer> L;
 	private static boolean[] marcados;
 	
-	
-	
 	public static boolean esConexo(Grafo g) 
 	{
 		if (g == null)
