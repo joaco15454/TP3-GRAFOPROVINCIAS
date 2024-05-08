@@ -9,7 +9,7 @@ public class Agm {
 	
 	private static Grafo grafo ;
 	private static Grafo Arbol;
-	private static List <ProvianciasRelacionadas > listprov= new ArrayList<>();
+	private static List <ProvinciasRelacionadas > listprov= new ArrayList<>();
 
 	public static void crearGrafo() {
         grafo = new Grafo(listprov.size());
@@ -17,7 +17,7 @@ public class Agm {
       	
 	}
 	
-	public static void cargarprovincia(ProvianciasRelacionadas p) {
+	public static void cargarprovincia(ProvinciasRelacionadas p) {
 		
 		listprov.add(p);
 	}
