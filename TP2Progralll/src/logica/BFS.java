@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class BFS {
 		return g.tamano() == 0 || alcanzables(g, 0).size() == g.tamano();
 	}
 
-	public static Set<Integer> alcanzables(Grafo g, int origen) 
+	public static List<Integer> alcanzables(Grafo g, int origen) 
 	{
-		Set<Integer> ret = new HashSet<Integer>();
+		List<Integer> ret = new ArrayList<Integer>();
 		inicializarRecorrido(g, origen);
 		
 		while (!L.isEmpty()) 

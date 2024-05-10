@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ProvinciasRelacionadas {
-	private  String prov1;
-	private  String prov2;
+	private  int prov1;
+	private  int prov2;
 	private int peso;
 	
-	public ProvinciasRelacionadas (String  prov1 , String prov2, int peso) {
+	public ProvinciasRelacionadas (int prov1 , int prov2, int peso) {
 		
 		prov1=prov1;
 		prov2=prov2;
@@ -16,11 +16,11 @@ public class ProvinciasRelacionadas {
 		
 		}
 	
-	public String getProv1() {
+	public int getProv1() {
 		return this.prov1;
 	}
 	
-	public  String getProv2() {
+	public  int getProv2() {
 		return this.prov2;
 	}
 	

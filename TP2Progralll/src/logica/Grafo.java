@@ -100,4 +100,9 @@ public class Grafo {
 		}
 	}
 
+	public int retornarArista(int x,int y) {
+		return pesos[x][y];
+	}
+
+
 }

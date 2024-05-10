@@ -9,18 +9,18 @@ public class Agm {
 
 	private static Grafo grafo ;
 	private static Grafo Arbol;
-	private static Set <ProvinciasRelacionadas > lista= new HashSet<>();
-	private static List <String> listProv= new ArrayList<>();
+	private static Set <ProvinciasRelacionadas > lista;
+	private static List <Integer> listProv;
 
-	public Agm()
-	{
-		lista =  new HashSet<>();
-		grafo= null;
-		 Arbol = null;
+	public Agm(Set<ProvinciasRelacionadas> listaInicial, List<Integer> listaProvInicial) {
+	    lista = listaInicial;
+	    grafo = new Grafo(listaInicial.size());
+	    Arbol = null;
+	    listProv = listaProvInicial;
 	}
 
-	public static void crearGrafo() {
-        grafo = new Grafo(lista.size());
+	public static void crearGrafo(Grafo g) {
+        g = new Grafo(lista.size());
         relaciones();
 
 	}
@@ -36,7 +36,7 @@ public class Agm {
 		
 	}
 
-	private static  void relaciones() {
+	void relaciones() {
 		
 		  for (ProvinciasRelacionadas x :lista ) {
 			 if(listProv.contains(x.getProv1()) && listProv.contains(x.getProv2())){
@@ -48,8 +48,8 @@ public class Agm {
 		  }
   }
 
-	 public static Grafo ArbolGeneradorMinimo() {
-		 crearGrafo();
+	 public Grafo ArbolGeneradorMinimo() {
+		 crearGrafo(Arbol);
 		 List<Integer>  Vertices_visitados=new ArrayList<>();
 		 Vertices_visitados.add(0);
 		 Integer vesinomin=null;
