@@ -19,12 +19,6 @@ public class Agm {
 	    listProv = listaProvInicial;
 	}
 
-	public static void crearGrafo(Grafo g) {
-        g = new Grafo(lista.size());
-        relaciones();
-
-	}
-
 	public static void cargarprovincia(ProvinciasRelacionadas p) {
 
 		lista.add(p);
@@ -36,7 +30,7 @@ public class Agm {
 		
 	}
 
-	void relaciones() {
+	 void relaciones() {
 		
 		  for (ProvinciasRelacionadas x :lista ) {
 			 if(listProv.contains(x.getProv1()) && listProv.contains(x.getProv2())){
@@ -49,30 +43,35 @@ public class Agm {
   }
 
 	 public Grafo ArbolGeneradorMinimo() {
-		 crearGrafo(Arbol);
-		 List<Integer>  Vertices_visitados=new ArrayList<>();
-		 Vertices_visitados.add(0);
-		 Integer vesinomin=null;
-		 while  (Vertices_visitados.size()< grafo.tamano()) {
-			int arismin= Integer.MAX_VALUE;
-			for(Integer x: Vertices_visitados) {
-				vesinomin=arismin(x, Vertices_visitados);
+		 	relaciones();
+		    Arbol = new Grafo(grafo.tamano()); // Crear un nuevo grafo para el árbol generador mínimo
+		    List<Integer> verticesVisitados = new ArrayList<>();
+		    verticesVisitados.add(0); // Comenzamos desde el vértice 0
+		    
+		    while (verticesVisitados.size() < grafo.tamano()) {
+		        int minArista = Integer.MAX_VALUE;
+		        int verticeMin = -1;
+		        
+		        // Buscar la arista mínima conectada a los vértices visitados
+		        for (Integer vertice : verticesVisitados) {
+		            Set<Integer> vecinos = grafo.vecinos(vertice);
+		            for (Integer vecino : vecinos) {
+		                if (!verticesVisitados.contains(vecino) && grafo.obtenerPeso(vertice, vecino) < minArista) {
+		                    minArista = grafo.obtenerPeso(vertice, vecino);
+		                    verticeMin = vecino;
+		                }
+		            }
+		        }
+		        
+		        // Agregar el vértice y la arista mínima al árbol generador mínimo
+		        if (verticeMin != -1) {
+		            verticesVisitados.add(verticeMin);
+		            Arbol.agregarAristaConPeso(verticesVisitados.get(verticesVisitados.size() - 2), verticeMin, minArista);
+		        }
+		    }
 
-				if (vesinomin!=null && !Vertices_visitados.contains(vesinomin) && arismin> vesinomin )
-				{
-					arismin=vesinomin;
-					Vertices_visitados.add(arismin);
-					Arbol.agregarAristaConPeso(x, arismin, Arbol.obtenerPeso(x, arismin));
-
-					}
-			}
-
-
-		 }
-
-		return Arbol;
-}
-
+		    return Arbol;
+		}
 
 	 private static Integer arismin(Integer i, List<Integer> visitados) {
 		 Set<Integer> vecinos = grafo.vecinos(i);
