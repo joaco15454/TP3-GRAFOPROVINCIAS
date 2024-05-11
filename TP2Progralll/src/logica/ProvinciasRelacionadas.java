@@ -10,9 +10,9 @@ public class ProvinciasRelacionadas {
 	
 	public ProvinciasRelacionadas (int prov1 , int prov2, int peso) {
 		
-		prov1=prov1;
-		prov2=prov2;
-		peso=peso;
+		this.prov1=prov1;
+		this.prov2=prov2;
+		this.peso=peso;
 		
 		}
 	

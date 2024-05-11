@@ -69,7 +69,7 @@ public class Grafo {
 
         Set<Integer> ret = new HashSet<>();
         for (int j = 0; j < this.tamano(); ++j) {
-            if (i != j && this.existeArista(i, j)) {
+            if (A[i][j]) {
                 ret.add(j);
             }
         }
@@ -88,9 +88,8 @@ public class Grafo {
         }
     }
 
-    // Verifica que i y j sean distintos
     private void verificarDistintos(int i, int j) {
-        if (i == j) {
+        if (i == j && !A[i][j]) { // Solo lanza una excepción si no se trata de una arista con peso
             throw new IllegalArgumentException("No se permiten loops: (" + i + ", " + j + ")");
         }
     }
