@@ -33,7 +33,7 @@ public class Logica {
 	        int provincia1 = relacion.getProv1();
 	        int provincia2 = relacion.getProv2();
 	        int peso = relacion.getPeso();
-	        System.out.println("Provincia 1 : " + provincia1 + " Provincia 2: " + provincia2);
+	     //   System.out.println("Provincia 1 : " + provincia1 + " Provincia 2: " + provincia2);
 	        Grafo_G.agregarAristaConPeso(provincia1 -1, provincia2-1, peso);
 	    }
 	}
@@ -73,7 +73,7 @@ public class Logica {
 	    for (int i = 0; i < ArbolGenerador.tamano(); i++) {
 	        for (int j = i + 1; j < ArbolGenerador.tamano(); j++) {
 	            if (ArbolGenerador.existeArista(i, j)) {
-	                System.out.println("Existe arista: " + i + "J: " + j);
+	                System.out.println("Existe arista: " + i + "J: " + j + "Peso: " + ArbolGenerador.obtenerPeso(i,j));
 	            }
 	        }
 	    }
@@ -123,30 +123,35 @@ public class Logica {
 	        return null;
 	    }
 	}
-	public void dividirGrafo(){
-		  if (ArbolGenerador != null) {
-		        int valor1 = 0;
-		        int valor2 = 0;
-		        int max= Integer.MIN_VALUE;
-		        for(int x=0;x<ArbolGenerador.tamano();x++) {
-		            for(int y=0;y<ArbolGenerador.tamano();y++) {
-		                if(max<ArbolGenerador.retornarArista(x, y)) {
-		                    max=ArbolGenerador.retornarArista(x, y);
-		                    valor1=x;
-		                    valor2=y;
-		                }
-		            }
-		        }
-		        ArbolGenerador.eliminarArista(valor1, valor2);
-		    } else {
-		        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
-		    }
+	public void dividirGrafo(int k) {
+	    if (ArbolGenerador != null) {
+	        for (int i = 0; i < k - 1; i++) {
+	            int valor1 = 0;
+	            int valor2 = 0;
+	            int max = Integer.MIN_VALUE;
+	            // Buscar la arista de mayor peso en el árbol generador mínimo
+	            for (int x = 0; x < ArbolGenerador.tamano(); x++) {
+	                for (int y = 0; y < ArbolGenerador.tamano(); y++) {
+	                    if (max < ArbolGenerador.retornarArista(x, y)) {
+	                        max = ArbolGenerador.retornarArista(x, y);
+	                        valor1 = x;
+	                        valor2 = y;
+	                    }
+	                }
+	            }
+	            // Eliminar la arista de mayor peso
+	            ArbolGenerador.eliminarArista(valor1, valor2);
+	        }
+	    } else {
+	        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
+	    }
 	}
-	public List<List<Integer>> componentesConexas(int numComponentes) {
+	public List<List<Integer>> componentesConexas(int k) {
 	    List<List<Integer>> componentesConexas = new ArrayList<>();
 	    boolean[] visitado = new boolean[ArbolGenerador.tamano()];
 
-	    for (int i = 0; i < ArbolGenerador.tamano() && componentesConexas.size() < numComponentes; i++) {
+	    // Dividir el grafo en k componentes conexas
+	    for (int i = 0; i < ArbolGenerador.tamano() && componentesConexas.size() < k; i++) {
 	        if (!visitado[i]) {
 	            List<Integer> componente = new ArrayList<>();
 	            BFS(i, visitado, componente);

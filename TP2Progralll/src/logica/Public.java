@@ -40,16 +40,17 @@ public class Public {
 	    prueba.ArbolGeneradorMinimo();
 	    System.out.println("ESTOY ACA");
 	    // Crear el árbol generador mínimo
-	   // prueba.nodosArbolGeneradorMinimo();
+	    prueba.nodosArbolGeneradorMinimo();
 	 
 	    // Dividir el grafo en dos regiones
-	   prueba.dividirGrafo();
+	   prueba.dividirGrafo(3);
+
 
 	    // Calcular componentes conexas
 	    List<List<Integer>> componentes = prueba.componentesConexas(3);
 
 	    // Imprimir las componentes conexas
-	    for (int i = 0; i < componentes.size(); i++) {
+	   for (int i = 0; i < componentes.size(); i++) {
 	        System.out.println("Componente conexa " + (i + 1) + ": " + componentes.get(i));
 	    }
 	}}
