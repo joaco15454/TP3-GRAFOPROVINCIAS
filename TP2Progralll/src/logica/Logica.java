@@ -10,6 +10,7 @@ import java.util.Set;
 public class Logica {
 	private static List<Integer> listaDeProvincias = new ArrayList<>();
 	private static Set<ProvinciasRelacionadas> relaciones = new HashSet<>();
+	private static ArrayList< String > provinciasCargadas=new ArrayList<>(); // agregadooooo
 
 	private static Grafo Grafo_G;
 	private static Agm Arbol;
@@ -20,21 +21,22 @@ public class Logica {
 	    Arbol = null;
 	}
 	
-	public void CargarNodo(int p) {
+	public static void CargarNodo(int p) {
 			listaDeProvincias.add(p);
 	}
 	
+	
 	public void crearGrafo() {
-		Grafo_G = new Grafo(listaDeProvincias.size());
-	//	agregarConexiones(relaciones);
+		Grafo_G = new Grafo(provinciasCargadas.size()); ////CAMBIOOO
+		agregarRelaciones();////CAMBIOOO
 	}
-	public void agregarRelaciones(Set<ProvinciasRelacionadas> relaciones) {
+	public void agregarRelaciones() { ////CAMBIOOO
 	    for (ProvinciasRelacionadas relacion : relaciones) {
 	        int provincia1 = relacion.getProv1();
 	        int provincia2 = relacion.getProv2();
 	        int peso = relacion.getPeso();
-	     //   System.out.println("Provincia 1 : " + provincia1 + " Provincia 2: " + provincia2);
-	        Grafo_G.agregarAristaConPeso(provincia1 -1, provincia2-1, peso);
+	        System.out.println("Provincia 1 : " + provincia1 + " Provincia 2: " + provincia2);
+	        Grafo_G.agregarAristaConPeso(provincia1 , provincia2, peso);
 	    }
 	}
 
@@ -73,7 +75,7 @@ public class Logica {
 	    for (int i = 0; i < ArbolGenerador.tamano(); i++) {
 	        for (int j = i + 1; j < ArbolGenerador.tamano(); j++) {
 	            if (ArbolGenerador.existeArista(i, j)) {
-	                System.out.println("Existe arista: " + i + "J: " + j + "Peso: " + ArbolGenerador.obtenerPeso(i,j));
+	                System.out.println("Existe arista: " + i + "J: " + j);
 	            }
 	        }
 	    }
@@ -123,35 +125,30 @@ public class Logica {
 	        return null;
 	    }
 	}
-	public void dividirGrafo(int k) {
-	    if (ArbolGenerador != null) {
-	        for (int i = 0; i < k - 1; i++) {
-	            int valor1 = 0;
-	            int valor2 = 0;
-	            int max = Integer.MIN_VALUE;
-	            // Buscar la arista de mayor peso en el árbol generador mínimo
-	            for (int x = 0; x < ArbolGenerador.tamano(); x++) {
-	                for (int y = 0; y < ArbolGenerador.tamano(); y++) {
-	                    if (max < ArbolGenerador.retornarArista(x, y)) {
-	                        max = ArbolGenerador.retornarArista(x, y);
-	                        valor1 = x;
-	                        valor2 = y;
-	                    }
-	                }
-	            }
-	            // Eliminar la arista de mayor peso
-	            ArbolGenerador.eliminarArista(valor1, valor2);
-	        }
-	    } else {
-	        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
-	    }
+	public void dividirGrafo(){
+		  if (ArbolGenerador != null) {
+		        int valor1 = 0;
+		        int valor2 = 0;
+		        int max= Integer.MIN_VALUE;
+		        for(int x=0;x<ArbolGenerador.tamano();x++) {
+		            for(int y=0;y<ArbolGenerador.tamano();y++) {
+		                if(max<ArbolGenerador.retornarArista(x, y)) {
+		                    max=ArbolGenerador.retornarArista(x, y);
+		                    valor1=x;
+		                    valor2=y;
+		                }
+		            }
+		        }
+		        ArbolGenerador.eliminarArista(valor1, valor2);
+		    } else {
+		        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
+		    }
 	}
-	public List<List<Integer>> componentesConexas(int k) {
+	public List<List<Integer>> componentesConexas(int numComponentes) {
 	    List<List<Integer>> componentesConexas = new ArrayList<>();
 	    boolean[] visitado = new boolean[ArbolGenerador.tamano()];
 
-	    // Dividir el grafo en k componentes conexas
-	    for (int i = 0; i < ArbolGenerador.tamano() && componentesConexas.size() < k; i++) {
+	    for (int i = 0; i < ArbolGenerador.tamano() && componentesConexas.size() < numComponentes; i++) {
 	        if (!visitado[i]) {
 	            List<Integer> componente = new ArrayList<>();
 	            BFS(i, visitado, componente);
@@ -179,5 +176,41 @@ public class Logica {
             }
         }
     }
-}
+    
+    
+ /*---------------------cosas que hice para la visual----------------------------------------------------------*/
+    
+	public static void  CargarProvincia(String p) {
+		provinciasCargadas.add(p);
+	}
+
+    public static int tamlistprov()
+    {
+    	return provinciasCargadas.size();
+    }
+
+	public static void cargarTodosLosNodos() {
+		for(int i=0;  i<= provinciasCargadas.size();i++) {
+					CargarNodo(i);
+			
+		}
+	}
+	
+	public static List listadeprov() {
+		return provinciasCargadas;
+	}
+	
+	public static void conexiones(int indice1, int indice2 ,int peso) {
+		ProvinciasRelacionadas rel= new ProvinciasRelacionadas(indice1,indice2,peso);
+		relaciones.add(rel); // se agrega a la lista de relaciones
+		 
+	}
+
+	public static boolean estaEnLaLista(String text) {
+			return provinciasCargadas.contains(text);
+			
+		}
+	}
+	
+
 

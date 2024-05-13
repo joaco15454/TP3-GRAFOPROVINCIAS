@@ -35,22 +35,21 @@ public class Public {
 
 	    // Crear el grafo
 	    prueba.crearGrafo();
-	    prueba.agregarRelaciones(relaciones);
+	   // prueba.agregarRelaciones(relaciones);
 
 	    prueba.ArbolGeneradorMinimo();
 	    System.out.println("ESTOY ACA");
 	    // Crear el árbol generador mínimo
-	    prueba.nodosArbolGeneradorMinimo();
+	   // prueba.nodosArbolGeneradorMinimo();
 	 
 	    // Dividir el grafo en dos regiones
-	   prueba.dividirGrafo(3);
-
+	   prueba.dividirGrafo();
 
 	    // Calcular componentes conexas
 	    List<List<Integer>> componentes = prueba.componentesConexas(3);
 
 	    // Imprimir las componentes conexas
-	   for (int i = 0; i < componentes.size(); i++) {
+	    for (int i = 0; i < componentes.size(); i++) {
 	        System.out.println("Componente conexa " + (i + 1) + ": " + componentes.get(i));
 	    }
 	}}

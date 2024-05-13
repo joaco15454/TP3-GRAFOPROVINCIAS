@@ -14,8 +14,14 @@ import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
+
+
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Inicio {
 
@@ -23,7 +29,7 @@ public class Inicio {
 	private JPanel panelMapa;
 	private JPanel panelControles;
 	private JMapViewer _mapa;
-	private ArrayList< Coordinate > _lasCoordenadas;
+	private ArrayList< String > provinciasCargadas;
 	private JButton btnEliminar;
 	private MapPolygonImpl _poligono;
 	private JButton btnDibujarPolgono ;
@@ -51,6 +57,8 @@ public class Inicio {
 	private Coordinate SantiagodelEstero= new Coordinate(-27.556985, -63.298867);
 	private Coordinate TierradelFuego= new Coordinate(-54.335746, -67.836221);
 	private Coordinate Tucumán= new Coordinate(-27.166698, -65.408242);
+	private JTextField Provincia;
+	private JButton btnNewButton;
 
 	
 
@@ -72,6 +80,28 @@ public class Inicio {
 			}
 		});
 	}
+	
+	
+	private void botonAgregar() {
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {	
+					if (Provincia.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Debe colocar un nombre");
+					}else if(!provinciasCargadas.contains(Provincia.getText())) {
+						provinciasCargadas.add(Provincia.getText());
+						Provincia.setText("");
+						;}
+	
+					} catch (Exception e1) {JOptionPane.showMessageDialog(null, "Provincia ya agregadas");}		
+						
+			}});
+	}
+	
+	
+	
+	
 
 	/**
 	 * Create the application.
@@ -101,29 +131,22 @@ public class Inicio {
 		frame.getContentPane().add(panelControles);		
 		panelControles.setLayout(null);
 		
-		TextField similaridad = new TextField();
-		similaridad.setBounds(462, 121, 48, 22);
-		panelControles.add(similaridad);
+		Provincia = new JTextField();
+		Provincia.setBounds(84, 150, 223, 33);
+		panelControles.add(Provincia);
+		Provincia.setColumns(10);
 		
-		JComboBox prov1 = new JComboBox();
+		 btnNewButton = new JButton("Agregar proviancia");
 		
-		prov1.setModel(new DefaultComboBoxModel(new String[] {"Buenos Aires", "Ciudad Autónoma de Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"}));
-		prov1.setSelectedIndex(0);
-		prov1.setBounds(33, 121, 186, 22);
-		panelControles.add(prov1);
 		
-		JComboBox prov2 = new JComboBox();
-		prov2.setModel(new DefaultComboBoxModel(new String[] {"Buenos Aires", "Ciudad Autónoma de Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"}));
-		prov2.setBounds(229, 121, 186, 22);
-		panelControles.add(prov2);
+	
 		
-		JButton btnAgregar = new JButton("agregar");
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAgregar.setBounds(539, 120, 91, 23);
-		panelControles.add(btnAgregar);
+		btnNewButton.setBounds(407, 155, 185, 23);
+		panelControles.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Agrege una por una las provincias que quiren utilizar ,para luego relacionarlas ");
+		lblNewLabel.setBounds(41, 61, 506, 23);
+		panelControles.add(lblNewLabel);
 		
 		
 		_mapa = new JMapViewer();
@@ -132,8 +155,11 @@ public class Inicio {
 		panelMapa.setLayout(null);
 		panelMapa.setEnabled(false);
 		panelMapa.add(_mapa);
-		dibujarpuntosprovincias();
-		relaciones();
+		
+		botonAgregar();
+		
+		//dibujarpuntosprovincias();
+		//relaciones();
 	
 		
 		
@@ -195,11 +221,6 @@ public class Inicio {
 		
 	}
 
-	
-
-		
-	
-	
 	public void relaciones() {
 		MapPolygonImpl bsasciudadautonoma = new MapPolygonImpl(buenosaires,CiudadAutónomadeBuenosAires,CiudadAutónomadeBuenosAires);
 		_mapa.addMapPolygon(bsasciudadautonoma);
