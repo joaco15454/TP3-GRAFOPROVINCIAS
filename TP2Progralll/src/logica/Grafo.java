@@ -12,7 +12,11 @@ public class Grafo {
         A = new boolean[vertices][vertices];
         pesos = new int[vertices][vertices]; // Inicializamos la matriz de pesos
     }
-
+    
+    public Grafo getGrafo() {
+    	return this;
+    }
+    
     // Agregado de aristas con peso
     public void agregarAristaConPeso(int i, int j, int peso) {
         verificarVertice(i);
@@ -33,9 +37,10 @@ public class Grafo {
 
         A[i][j] = false;
         A[j][i] = false;
-        pesos[i][j] = 0; // Eliminamos el peso de la arista
+        pesos[i][j] = 0; // Establecer el peso de la arista eliminada en 0
         pesos[j][i] = 0; // Peso simétrico en el grafo no dirigido
     }
+
 
     // Informa si existe la arista especificada
     public boolean existeArista(int i, int j) {

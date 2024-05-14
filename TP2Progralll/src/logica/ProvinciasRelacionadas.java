@@ -1,8 +1,5 @@
 package logica;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class ProvinciasRelacionadas {
 	private  int prov1;
 	private  int prov2;

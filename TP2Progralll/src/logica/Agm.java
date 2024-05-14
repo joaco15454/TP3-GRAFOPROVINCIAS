@@ -18,6 +18,10 @@ public class Agm {
 	    Arbol = null;
 	    listProv = listaProvInicial;
 	}
+	
+	public Grafo getGrafo() {
+		return grafo;
+	}
 
 	public static void cargarprovincia(ProvinciasRelacionadas p) {
 
@@ -30,7 +34,7 @@ public class Agm {
 		
 	}
 
-	 void relaciones() {
+	 public void relaciones() {
 		
 		  for (ProvinciasRelacionadas x :lista ) {
 			 if(listProv.contains(x.getProv1()) && listProv.contains(x.getProv2())){
