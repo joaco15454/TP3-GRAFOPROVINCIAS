@@ -35,5 +35,5 @@ public class ProvinciasRelacionadasTest {
         assertEquals(500, relacion.getPeso());
     }
 
-    // Otros casos de prueba se pueden agregar para verificar más comportamientos de la clase ProvinciasRelacionadas
+   
 }

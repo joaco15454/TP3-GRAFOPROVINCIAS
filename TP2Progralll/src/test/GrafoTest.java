@@ -58,6 +58,6 @@ public class GrafoTest {
         grafo.agregarAristaConPeso(0, 0, 5); // Debería lanzar una excepción
     }
 
-    // Agrega más pruebas según sea necesario para otros métodos
+    
 
 }

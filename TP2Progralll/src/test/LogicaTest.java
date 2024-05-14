@@ -37,16 +37,16 @@ public class LogicaTest {
     public void testMostrarVecinos() {
         logica.crearGrafo();
         logica.mostrarVecinos();
-        // Agrega más aserciones según sea necesario
+        
     }
 
     @Test
     public void testArbolGeneradorMinimo() {
         logica.crearGrafo();
         logica.ArbolGeneradorMinimo();
-        // Agrega más aserciones según sea necesario
+        
     }
 
-    // Agrega más pruebas según sea necesario para otros métodos
+    
 
 }
