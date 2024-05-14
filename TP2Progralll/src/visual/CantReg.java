@@ -49,7 +49,7 @@ public class CantReg extends JDialog {
 	}
 	
 
-
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void incializarPanel() {
 		setBounds(100, 100, 832, 627);
 		getContentPane().setLayout(new BorderLayout());
@@ -74,7 +74,9 @@ public class CantReg extends JDialog {
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		buttonPane.setLayout(null);
 	}
+	
 
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void crearBotones() {
 		btnSumar.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		btnSumar.setForeground(new Color(255, 255, 255));
@@ -109,6 +111,8 @@ public class CantReg extends JDialog {
 		txtIndicacion.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
+
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void escucharBotonRestar() {
 		btnRestar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -123,12 +127,14 @@ public class CantReg extends JDialog {
 		});
 	}
 	
+
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void escucharBotonSumar() {
 		btnSumar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {		
-					int grupos=Integer.parseInt(cantRegiones.getText());
-					int cantMax=Logica.tamlistprov();
+					int grupos=Integer.parseInt(cantRegiones.getText().toString());
+					int cantMax=Logica.tamlistprov()-1;
 					if(grupos<cantMax){
 						cantRegiones.setText((++grupos)+"");
 					}
@@ -138,14 +144,17 @@ public class CantReg extends JDialog {
 		});
 	}
 	
+
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void escucharBotonContinuar() {
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {	
 					
-					int grupos=Integer.parseInt(cantRegiones.getText());
+					
 					Logica.crearGrafo();
 					Logica.ArbolGeneradorMinimo();
+					Integer grupos=Integer.parseInt(cantRegiones.getText().toString());
 					for(int i=1;i<grupos;i++) {
 						Logica.dividirGrafo();
 					}
@@ -157,6 +166,8 @@ public class CantReg extends JDialog {
 		});
 	}
 	
+
+/*----------------------------------------------------------------------------------------------------------------*/
 	private void escucharBotonVolver() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -169,6 +180,8 @@ public class CantReg extends JDialog {
 			}		
 		});
 	}
+
+/*----------------------------------------------------------------------------------------------------------------*/
 	
 	
 	

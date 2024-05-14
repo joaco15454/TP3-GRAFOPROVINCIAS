@@ -8,32 +8,35 @@ import java.util.Queue;
 import java.util.Set;
 
 public class Logica {
+	
 	private static List<Integer> listaDeProvincias = new ArrayList<>();
 	private static Set<ProvinciasRelacionadas> relaciones = new HashSet<>();
 	private static ArrayList< String > provinciasCargadas=new ArrayList<>(); // agregadooooo
-
 	private static Grafo Grafo_G;
-	private static Agm Arbol;
 	private static Grafo ArbolGenerador;
+	
+ /*----------------------------------------------------------------------------------------------------------------*/	
 	public Logica() {
 	    listaDeProvincias = new ArrayList<>();
 	    Grafo_G = null;
-	    Arbol = null;
+	    ArbolGenerador = null;
 	}
-	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	public Grafo getGrafoG() {
 		return Grafo_G;
 	}
-	
+ /*----------------------------------------------------------------------------------------------------------------*/
 	public static void CargarNodo(int p) {
 			listaDeProvincias.add(p);
 	}
 	
-	
+ /*----------------------------------------------------------------------------------------------------------------*/	
 	public static void crearGrafo() {
 		Grafo_G = new Grafo(provinciasCargadas.size()); ////CAMBIOOO
 		agregarRelaciones();////CAMBIOOO
 	}
+	
+/*----------------------------------------------------------------------------------------------------------------*/
 	public static void agregarRelaciones() { ////CAMBIOOO
 	    for (ProvinciasRelacionadas relacion : relaciones) {
 	        int provincia1 = relacion.getProv1();
@@ -43,15 +46,20 @@ public class Logica {
 	        Grafo_G.agregarAristaConPeso(provincia1 , provincia2, peso);
 	    }
 	}
-
+	
+/*----------------------------------------------------------------------------------------------------------------*/
 	private static void agregarConexiones(Set<ProvinciasRelacionadas> p) {
 		for (ProvinciasRelacionadas provincias : p) {
 			agregarConexiones(provincias.getProv1(),provincias.getProv2(), provincias.getPeso());
 		}
 	}
+	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private static void agregarConexiones(int provincia1, int provincia2, int peso) {
 		Grafo_G.agregarAristaConPeso(provincia1, provincia2, peso);
 	}
+	
+ /*----------------------------------------------------------------------------------------------------------------*/	
 	public void mostrarVecinos() {
 	    if (Grafo_G != null) {
 	        for (int i = 0; i < listaDeProvincias.size(); i++) {
@@ -67,14 +75,9 @@ public class Logica {
 	        System.out.println("El grafo no ha sido inicializado correctamente.");
 	    }
 	}
-
-	/*void crearArbol() {
-		Arbol=new Agm(relaciones, listaDeProvincias);
-		Arbol.relaciones();
-		ArbolGenerador = Arbol.ArbolGeneradorMinimo();
-		System.out.println("ARBOL GENERADOR: " + ArbolGenerador);
 	
-	}*/
+/*----------------------------------------------------------------------------------------------------------------*/	
+	
 	public void nodosArbolGeneradorMinimo() {
 	    for (int i = 0; i < ArbolGenerador.tamano(); i++) {
 	        for (int j = i + 1; j < ArbolGenerador.tamano(); j++) {
@@ -85,6 +88,8 @@ public class Logica {
 	    }
 	   
 	}
+	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	public static Grafo ArbolGeneradorMinimo() {
 	    Grafo grafo = Grafo_G; // Utiliza el grafo creado en la clase Logica
 	    if (grafo != null) {
@@ -129,6 +134,8 @@ public class Logica {
 	        return null;
 	    }
 	}
+	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	public static void dividirGrafo(){
 		  if (ArbolGenerador != null) {
 		        int valor1 = 0;
@@ -148,6 +155,8 @@ public class Logica {
 		        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
 		    }
 	}
+	
+ /*----------------------------------------------------------------------------------------------------------------*/
 	public static List<List<Integer>> componentesConexas() {
 	    List<List<Integer>> componentesConexas = new ArrayList<>();
 	    boolean[] visitado = new boolean[ArbolGenerador.tamano()];
@@ -163,7 +172,7 @@ public class Logica {
 	    return componentesConexas;
 	}
 	
-
+/*----------------------------------------------------------------------------------------------------------------*/
     private static void BFS(int inicio, boolean[] visitado, List<Integer> componente) {
         Queue<Integer> cola = new LinkedList<>();
         cola.offer(inicio);
@@ -182,59 +191,58 @@ public class Logica {
         }
     }
     
+ /*----------------------------------------------------------------------------------------------------------------*/
     
- /*---------------------cosas que hice para la visual----------------------------------------------------------*/
-    
-	public static void  CargarProvincia(String p) {
+	public static void  CargarProvincia(String p) 
+	{
 		provinciasCargadas.add(p);
 	}
 
+ /*----------------------------------------------------------------------------------------------------------------*/
     public static int tamlistprov()
     {
     	return provinciasCargadas.size();
     }
+    
+/*----------------------------------------------------------------------------------------------------------------*/
 
-	public static void cargarTodosLosNodos() {
+	public static void cargarTodosLosNodos()
+	{
 		for(int i=0;  i<= provinciasCargadas.size();i++) {
 					CargarNodo(i);
 			
 		}
 	}
 	
-	public static List listadeprov() {
+/*----------------------------------------------------------------------------------------------------------------*/
+	
+	public static List listadeprov() 
+	{
 		return provinciasCargadas;
 	}
 	
-	public static void conexiones(int indice1, int indice2 ,int peso) {
+ /*----------------------------------------------------------------------------------------------------------------*/
+	public static void conexiones(int indice1, int indice2 ,int peso)
+	{
 		ProvinciasRelacionadas rel= new ProvinciasRelacionadas(indice1,indice2,peso);
 		relaciones.add(rel); // se agrega a la lista de relaciones
 		 
 	}
+	
+/*----------------------------------------------------------------------------------------------------------------*/
 
 	public static boolean estaEnLaLista(String text) {
 			return provinciasCargadas.contains(text);
 			
 		}
+	
+ /*----------------------------------------------------------------------------------------------------------------*/
 
 	public List<Integer> getListaDeProvincias() {
 		return listaDeProvincias;
 		}
 
-	
-	public static String getprov1 (int i) {
-		return  provinciasCargadas.get(i) ;
-		
-	}
-	
-	public static String getprov2 (int i) {
-		return  provinciasCargadas.get(i) ;
-		
-	}
-	
-	public static int getpeso(int i, int j) {
-		return  Grafo_G.obtenerPeso(i, j);
-		
-	}
+ /*----------------------------------------------------------------------------------------------------------------*/
 	
 	
 

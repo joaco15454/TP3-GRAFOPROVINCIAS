@@ -55,6 +55,9 @@ public class Relaciones {
 	/**
 	 * Create the application.
 	 */
+	
+
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void inicializarComponentes() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.desktop);
@@ -106,6 +109,7 @@ public class Relaciones {
 		
 	}
 	
+ /*----------------------------------------------------------------------------------------------------------------*/	
 	private void inicilizarboxes() {
 	    model1 = new DefaultComboBoxModel();
 		comboBoxProv1.setModel( model1);
@@ -118,6 +122,7 @@ public class Relaciones {
 		
 	}
 	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void escucharAgregarConexion() {
 		 btnAgregarConexion.addActionListener(new ActionListener() {
 			 	public void actionPerformed(ActionEvent e) {
@@ -139,6 +144,7 @@ public class Relaciones {
 		}});
 	}
 
+/*----------------------------------------------------------------------------------------------------------------*/		
 	private void escucharSiguiente() {
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,6 +158,7 @@ public class Relaciones {
 			}});
 		}
 		
+/*----------------------------------------------------------------------------------------------------------------*/	
 	
 	public Relaciones() {
 		initialize();

@@ -26,7 +26,6 @@ public class Resultados {
 	private static List<List<Integer>> componentesConexas = new ArrayList<>();
 	private String cadena="";
 	private JButton btnCerrar = new JButton("CERRAR");
-	private JButton btnVolver = new JButton("VOLVER\r\n");
 	private JPanel panel_1 = new JPanel();
 	private JPanel panel = new JPanel();
 	private JScrollPane scrollPane = new JScrollPane();
@@ -51,9 +50,9 @@ public class Resultados {
 		});
 	}
 	
-	
-	private void repuesta() {
-	    componentesConexas = Logica.componentesConexas();
+/*----------------------------------------------------------------------------------------------------------------*/	
+	private void respuesta() {
+		componentesConexas = Logica.componentesConexas();
 	    cadena = "Las relaciones son:\n";
 	    for (int i = 0; i < componentesConexas.size(); i++) {
 	        for (int j = 0; j < componentesConexas.get(i).size(); j++) {
@@ -67,7 +66,8 @@ public class Resultados {
 	    }	    
 	    txtrLasRelacionesSon.setText(cadena);
 	}
-
+	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void inicializarPaneles() {	
 		
 		frame = new JFrame();
@@ -103,30 +103,13 @@ public class Resultados {
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void incializarBotones() {
 		btnCerrar.setBackground(new Color(255, 250, 240));
 		btnCerrar.setBounds(678, 23, 145, 23);
 		panel_1.add(btnCerrar);
-		
-		
-		btnVolver.setBounds(37, 23, 124, 23);
-		panel_1.add(btnVolver);
 	}
-	
-	private void escucharBotonVolver() {
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {	
-					CantReg.main(null);						
-					frame.dispose();
-					}
-				catch (Exception e) {JOptionPane.showMessageDialog(null, "ERROR");}		
-			}		
-		});
-	}
-	
-	
-	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void escucharBotonCerrar() {
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -137,8 +120,8 @@ public class Resultados {
 			}		
 		});
 	}
-
-
+	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	
 	/**
 	 * Create the application.
@@ -153,10 +136,9 @@ public class Resultados {
 	private void initialize() {
 		
 		
-		inicializarPaneles();	
-		repuesta();
+		inicializarPaneles();
+		respuesta();
 		incializarBotones();
-		escucharBotonVolver();
 		escucharBotonCerrar();
 		
 	

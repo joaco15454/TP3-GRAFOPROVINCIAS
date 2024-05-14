@@ -45,7 +45,7 @@ public class Inicial {
 	/**
 	 * Create the application.
 	 */
-	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void inicializarComponentes() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -82,6 +82,7 @@ public class Inicial {
 		frame.getContentPane().add(fondo);
 	}
 	
+/*----------------------------------------------------------------------------------------------------------------*/	
 	private void escucharAgregarProvincia() {
 		btnAgregarProvincia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,6 +103,7 @@ public class Inicial {
 		}});
 	}
 	
+ /*----------------------------------------------------------------------------------------------------------------*/	
 	private void escucharSiguiente() {
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,7 +120,9 @@ public class Inicial {
 					} catch (Exception e1) {JOptionPane.showMessageDialog(null, "ERROR");}		
 						
 			}});
-		}
+	}
+	
+ /*----------------------------------------------------------------------------------------------------------------*/
 		
 	
 	
