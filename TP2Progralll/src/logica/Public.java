@@ -51,7 +51,8 @@ public class Public {
 	    // Imprimir las componentes conexas
 	    for (int i = 0; i < componentes.size(); i++) {
 	        System.out.println("Componente conexa " + (i + 1) + ": " + componentes.get(i));
-	    }
-	}}
+	    	}
+		}
+	}
 
 

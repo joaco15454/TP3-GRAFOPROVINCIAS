@@ -21,6 +21,10 @@ public class Logica {
 	    Arbol = null;
 	}
 	
+	public Grafo getGrafoG() {
+		return Grafo_G;
+	}
+	
 	public static void CargarNodo(int p) {
 			listaDeProvincias.add(p);
 	}
@@ -210,6 +214,12 @@ public class Logica {
 			return provinciasCargadas.contains(text);
 			
 		}
+
+	public List<Integer> getListaDeProvincias() {
+		return listaDeProvincias;
+		}
+
+
 	}
 	
 
