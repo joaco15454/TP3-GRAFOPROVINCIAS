@@ -48,18 +48,7 @@ public class Logica {
 	}
 	
 /*----------------------------------------------------------------------------------------------------------------*/
-	private static void agregarConexiones(Set<ProvinciasRelacionadas> p) {
-		for (ProvinciasRelacionadas provincias : p) {
-			agregarConexiones(provincias.getProv1(),provincias.getProv2(), provincias.getPeso());
-		}
-	}
 	
-/*----------------------------------------------------------------------------------------------------------------*/	
-	private static void agregarConexiones(int provincia1, int provincia2, int peso) {
-		Grafo_G.agregarAristaConPeso(provincia1, provincia2, peso);
-	}
-	
- /*----------------------------------------------------------------------------------------------------------------*/	
 	public void mostrarVecinos() {
 	    if (Grafo_G != null) {
 	        for (int i = 0; i < listaDeProvincias.size(); i++) {
