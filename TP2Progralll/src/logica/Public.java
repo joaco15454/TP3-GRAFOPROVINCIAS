@@ -46,7 +46,7 @@ public class Public {
 	   prueba.dividirGrafo();
 
 	    // Calcular componentes conexas
-	    List<List<Integer>> componentes = prueba.componentesConexas(3);
+	    List<List<Integer>> componentes = prueba.componentesConexas();
 
 	    // Imprimir las componentes conexas
 	    for (int i = 0; i < componentes.size(); i++) {

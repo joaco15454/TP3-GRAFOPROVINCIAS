@@ -18,6 +18,11 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Relaciones {
 
@@ -26,9 +31,10 @@ public class Relaciones {
 	private JComboBox comboBoxProv1;
 	private JComboBox comboBoxProv2;
 	private JButton btnAgregarConexion;
-	private JButton btnResultados;
+	private JButton btnSiguiente;
 	private DefaultComboBoxModel model;
 	private DefaultComboBoxModel model1;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -51,30 +57,52 @@ public class Relaciones {
 	 */
 	private void inicializarComponentes() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 778, 409);
+		frame.getContentPane().setBackground(SystemColor.desktop);
+		frame.setBounds(100, 100, 843, 609);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		comboBoxProv1 = new JComboBox();
+		comboBoxProv1.setForeground(SystemColor.text);
+		comboBoxProv1.setBackground(SystemColor.desktop);
 	
-		comboBoxProv1.setBounds(60, 127, 175, 22);
+		comboBoxProv1.setBounds(60, 228, 175, 22);
 		frame.getContentPane().add(comboBoxProv1);
 		
 		comboBoxProv2 = new JComboBox();
-		comboBoxProv2.setBounds(271, 127, 175, 22);
+		comboBoxProv2.setForeground(SystemColor.inactiveCaptionBorder);
+		comboBoxProv2.setBackground(SystemColor.controlText);
+		comboBoxProv2.setBounds(279, 228, 175, 22);
 		frame.getContentPane().add(comboBoxProv2);
 		
 		similaridad = new JTextField();
-		similaridad.setBounds(468, 128, 86, 20);
+		similaridad.setBackground(SystemColor.desktop);
+		similaridad.setForeground(SystemColor.text);
+		similaridad.setText("0");
+		similaridad.setBounds(487, 229, 86, 20);
 		frame.getContentPane().add(similaridad);
 		
 		 btnAgregarConexion = new JButton("Agregar conexion");
-		btnAgregarConexion.setBounds(575, 127, 124, 23);
+		 btnAgregarConexion.setForeground(SystemColor.text);
+		 btnAgregarConexion.setBackground(SystemColor.desktop);
+		btnAgregarConexion.setBounds(620, 228, 124, 23);
 		frame.getContentPane().add(btnAgregarConexion);
 		
-		 btnResultados = new JButton("Resultados");
-		btnResultados.setBounds(309, 311, 124, 23);
-		frame.getContentPane().add(btnResultados);
+		 btnSiguiente = new JButton("Siguiente");
+		 btnSiguiente.setBackground(new Color(255, 228, 181));
+		btnSiguiente.setBounds(693, 521, 124, 38);
+		frame.getContentPane().add(btnSiguiente);
+		
+		JLabel lblNewLabel = new JLabel("Coloque las relaciones");
+		lblNewLabel.setForeground(SystemColor.text);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 47));
+		lblNewLabel.setBounds(184, 23, 668, 48);
+		frame.getContentPane().add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(Relaciones.class.getResource("/Imagenes/Mapa.png")));
+		lblNewLabel_1.setBounds(10, 93, 786, 443);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 	}
 	
@@ -102,12 +130,28 @@ public class Relaciones {
 			 		}else {
 			 	    Integer peso=Integer.parseInt(similaridad.getText().toString());
 			 		Logica.conexiones(prov1, prov2, peso);
+			 		inicilizarboxes();
+			 		similaridad.setText("0");
 			 		;}
 
 				} catch (Exception e1) {JOptionPane.showMessageDialog(null, "ERROR");}		
 					
 		}});
 	}
+
+	private void escucharSiguiente() {
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					frame.dispose();
+					CantReg.main(null);
+						;}
+
+					catch (Exception e1) {JOptionPane.showMessageDialog(null, "ERROR");}		
+						
+			}});
+		}
+		
 	
 	public Relaciones() {
 		initialize();
@@ -122,5 +166,6 @@ public class Relaciones {
 		inicializarComponentes();
 		inicilizarboxes();
 		escucharAgregarConexion();
+		escucharSiguiente();
 	}
 }

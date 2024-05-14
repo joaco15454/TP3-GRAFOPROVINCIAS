@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import logica.Logica;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Inicial {
 
@@ -20,6 +23,7 @@ public class Inicial {
 	private JTextField Provincia;
 	private JButton btnAgregarProvincia;
 	private JButton btnSiguiente;
+	private JLabel fondo;
 
 	/**
 	 * Launch the application.
@@ -44,27 +48,38 @@ public class Inicial {
 	
 	private void inicializarComponentes() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 576, 306);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setBounds(100, 100, 811, 602);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		Provincia = new JTextField();
-		Provincia.setBounds(22, 106, 336, 26);
+		Provincia.setBounds(128, 209, 336, 26);
 		frame.getContentPane().add(Provincia);
 		Provincia.setColumns(10);
 		
 		btnAgregarProvincia = new JButton("Agregar Provincia\r\n");
-		btnAgregarProvincia.setBounds(376, 108, 174, 23);
+		btnAgregarProvincia.setForeground(SystemColor.inactiveCaptionBorder);
+		btnAgregarProvincia.setBackground(new Color(0, 0, 0));
+		btnAgregarProvincia.setBounds(561, 211, 174, 23);
 		frame.getContentPane().add(btnAgregarProvincia);
 		
 		btnSiguiente = new JButton("Siguiente");
-		btnSiguiente.setBounds(224, 201, 89, 23);
+		btnSiguiente.setBackground(new Color(255, 228, 196));
+		btnSiguiente.setBounds(671, 504, 114, 48);
 		frame.getContentPane().add(btnSiguiente);
 		
 		JLabel lblNewLabel = new JLabel("Agregue las provincias que quiere utilizar para hacer la division de regiones");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(22, 11, 485, 53);
+		lblNewLabel.setBounds(168, 12, 485, 53);
 		frame.getContentPane().add(lblNewLabel);
+		
+		fondo = new JLabel("New label");
+		fondo.setIcon(new ImageIcon(Inicial.class.getResource("/Imagenes/Mapa.png")));
+		fondo.setBounds(10, 76, 785, 448);
+		frame.getContentPane().add(fondo);
 	}
 	
 	private void escucharAgregarProvincia() {
@@ -76,6 +91,7 @@ public class Inicial {
 					JOptionPane.showMessageDialog(null, "Tiene que colocar una provincia ");
 				}else if(!Provincia.getText().equals("") && !Logica.estaEnLaLista(Provincia.getText())) {
 					Logica.CargarProvincia(Provincia.getText());
+					Provincia.setText("");
 				} else{
 					JOptionPane.showMessageDialog(null, "Provincia ya agregada a la lista ");
 				

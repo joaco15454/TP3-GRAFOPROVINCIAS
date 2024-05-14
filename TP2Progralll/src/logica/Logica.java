@@ -30,11 +30,11 @@ public class Logica {
 	}
 	
 	
-	public void crearGrafo() {
+	public static void crearGrafo() {
 		Grafo_G = new Grafo(provinciasCargadas.size()); ////CAMBIOOO
 		agregarRelaciones();////CAMBIOOO
 	}
-	public void agregarRelaciones() { ////CAMBIOOO
+	public static void agregarRelaciones() { ////CAMBIOOO
 	    for (ProvinciasRelacionadas relacion : relaciones) {
 	        int provincia1 = relacion.getProv1();
 	        int provincia2 = relacion.getProv2();
@@ -85,7 +85,7 @@ public class Logica {
 	    }
 	   
 	}
-	public Grafo ArbolGeneradorMinimo() {
+	public static Grafo ArbolGeneradorMinimo() {
 	    Grafo grafo = Grafo_G; // Utiliza el grafo creado en la clase Logica
 	    if (grafo != null) {
 	        ArbolGenerador = new Grafo(grafo.tamano()); // Crear un nuevo grafo para el árbol generador mínimo
@@ -129,7 +129,7 @@ public class Logica {
 	        return null;
 	    }
 	}
-	public void dividirGrafo(){
+	public static void dividirGrafo(){
 		  if (ArbolGenerador != null) {
 		        int valor1 = 0;
 		        int valor2 = 0;
@@ -148,11 +148,11 @@ public class Logica {
 		        System.out.println("ArbolGenerador no ha sido inicializado correctamente.");
 		    }
 	}
-	public List<List<Integer>> componentesConexas(int numComponentes) {
+	public static List<List<Integer>> componentesConexas() {
 	    List<List<Integer>> componentesConexas = new ArrayList<>();
 	    boolean[] visitado = new boolean[ArbolGenerador.tamano()];
 
-	    for (int i = 0; i < ArbolGenerador.tamano() && componentesConexas.size() < numComponentes; i++) {
+	    for (int i = 0; i < ArbolGenerador.tamano() ; i++) {
 	        if (!visitado[i]) {
 	            List<Integer> componente = new ArrayList<>();
 	            BFS(i, visitado, componente);
@@ -162,8 +162,9 @@ public class Logica {
 
 	    return componentesConexas;
 	}
+	
 
-    private void BFS(int inicio, boolean[] visitado, List<Integer> componente) {
+    private static void BFS(int inicio, boolean[] visitado, List<Integer> componente) {
         Queue<Integer> cola = new LinkedList<>();
         cola.offer(inicio);
         visitado[inicio] = true;
@@ -219,8 +220,26 @@ public class Logica {
 		return listaDeProvincias;
 		}
 
+	
+	public static String getprov1 (int i) {
+		return  provinciasCargadas.get(i) ;
+		
+	}
+	
+	public static String getprov2 (int i) {
+		return  provinciasCargadas.get(i) ;
+		
+	}
+	
+	public static int getpeso(int i, int j) {
+		return  Grafo_G.obtenerPeso(i, j);
+		
+	}
+	
+	
 
 	}
 	
+		
 
 
